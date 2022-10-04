@@ -1,0 +1,114 @@
+#include <iostream> 
+#include <ctime>   
+#include <cstdlib>   
+#include<fstream> 
+#include <string.h>
+#include<Windows.h>
+#include <string>
+using namespace std;
+struct Book
+{
+	string avtor;
+	string name;
+	int cost;
+	int year;
+	string janr;
+
+
+} book[50];
+void print(Book book)
+{
+	cout << "Автор:" << book.avtor << endl;
+	cout << "Книга:" << book.name << endl;
+	cout << "Стоимость:" << book.cost << endl;
+	cout << "Год публикации:" << book.year << endl;
+	cout << "Жанр:" << book.janr << endl;
+}
+void vvod(int n)
+{
+	string path = "Данные.txt";
+	ofstream fout;
+	fout.open(path);
+	cout << "Автор:" << endl;
+	getline(cin,book[n].avtor);
+	fout << book[n].avtor << endl;
+	cout << "Книга:" << endl;
+	getline(cin,book[n].name);
+	fout << book[n].name << endl;
+	cout << "Жанр:" << endl;
+	getline(cin, book[n].janr);
+	fout << book[n].janr << endl;
+	cout << "Стоимость:" << endl;
+	cin >> book[n].cost;
+	fout << book[n].cost << endl;
+	cout << "Год публикации:" << endl;
+	cin >> book[n].year;
+	fout << book[n].year << endl;
+	fout.close();
+}
+void tovar()
+{
+	cout << "Товар:" << endl;
+	for (int i = 0; i < 30; i++)
+	{
+		if (book[i].cost == 0)
+		{
+
+		}
+		else if (book[i].cost != 0)
+		{
+			print(book[i]);
+		}
+	}
+}
+void zapisi()
+{
+	for (int i = 0; i < 30; i++)
+	{
+		if (book[i].cost != 0)
+		{
+			cout << "Запись-" << i << endl;
+		}
+		else if (book[i].cost != 0)
+		{
+
+		}
+	}
+
+}
+
+int main()
+{
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+	string s;
+	int a, b, c,n;
+	do
+	{
+		cout << "1-Добавить запись вручную" << endl;
+		cout << "2-Добавить запсь из файла" << endl;
+		cout << "0-Закончить выбор" << endl;
+		cin >> a;
+		switch (a)
+		{
+		case 1:
+		{
+			cout << "Сколько записей вы хотите добавить?" << endl;
+			cin >> c;
+			for (int i = 0; i < c; i++)
+			{
+				vvod(i);
+			}
+			zapisi();
+			tovar();
+			break;
+		}
+		case 2:
+		{
+			cin >> c;
+			cout << c << endl;
+			break;
+		}
+		}
+	} while (a != 0);
+}
